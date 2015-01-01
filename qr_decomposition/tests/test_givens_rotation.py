@@ -7,7 +7,7 @@ import unittest
 import numpy as np
 import numpy.testing as npt
 
-from .. import givens_rotation
+from .. import qr_decomposition
 
 
 class TestGivensRotation(unittest.TestCase):
@@ -24,7 +24,7 @@ class TestGivensRotation(unittest.TestCase):
                       [5, 1, 4],
                       [0, 4, 3]])
 
-        (Q, R) = givens_rotation.qr_decomposition(A)
+        (Q, R) = qr_decomposition.givens_rotation(A)
 
         Q_desired = np.array([[0.7682, 0.3327, 0.5470],
                               [0.6402, -0.3992, -0.6564],
@@ -48,7 +48,7 @@ class TestGivensRotation(unittest.TestCase):
                       [0, 0],
                       [4, 5]])
 
-        (Q, R) = givens_rotation.qr_decomposition(A)
+        (Q, R) = qr_decomposition.givens_rotation(A)
 
         Q_desired = np.array([[0.6, 0.3577, 0, -0.7155],
                               [0, 0.8944, 0, 0.4472],

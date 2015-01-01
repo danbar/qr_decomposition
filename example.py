@@ -1,7 +1,7 @@
 """Example for the usage of the qr_composition package."""
 import numpy as np
 
-from qr_decomposition import givens_rotation
+from qr_decomposition import qr_decomposition
 
 # Set print options (optional)
 np.set_printoptions(precision=4, suppress=True)
@@ -17,7 +17,7 @@ A = np.array([[3, 5],
 print(A)
 
 # Compute QR decomposition using Givens rotation
-(Q, R) = givens_rotation.qr_decomposition(A)
+(Q, R) = qr_decomposition.givens_rotation(A)
 
 # Print orthogonal matrix Q
 print(Q)

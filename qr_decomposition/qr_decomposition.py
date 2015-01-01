@@ -5,8 +5,8 @@ from math import hypot
 import numpy as np
 
 
-def qr_decomposition(A):
-    """Perform QR decomposition of matrix A."""
+def givens_rotation(A):
+    """Perform QR decomposition of matrix A using Givens rotation."""
     (num_rows, num_cols) = np.shape(A)
 
     # Initialize orthogonal matrix Q and upper triangular matrix R.
@@ -20,7 +20,7 @@ def qr_decomposition(A):
         # Compute Givens rotation matrix in order to
         # zero-out lower triangular matrix entries.
         if R[row, col] != 0:
-            (c, s) = givens_rotation(R[col, col], R[row, col])
+            (c, s) = _givens_rotation_matrix_entries(R[col, col], R[row, col])
 
             G = np.identity(num_rows)
             G[col, col] = c
@@ -34,8 +34,8 @@ def qr_decomposition(A):
     return (Q, R)
 
 
-def givens_rotation(a, b):
-    """Compute Givens rotation."""
+def _givens_rotation_matrix_entries(a, b):
+    """Compute matrix entries for Givens rotation."""
     r = hypot(a, b)
     c = a/r
     s = -b/r
