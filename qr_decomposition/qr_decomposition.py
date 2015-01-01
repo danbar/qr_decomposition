@@ -17,14 +17,13 @@ def givens_rotation(A):
     (rows, cols) = np.tril_indices(num_rows, -1, num_cols)
     for (row, col) in zip(rows, cols):
 
-        # Compute Givens rotation matrix in order to
+        # Compute Givens rotation matrix and
         # zero-out lower triangular matrix entries.
         if R[row, col] != 0:
             (c, s) = _givens_rotation_matrix_entries(R[col, col], R[row, col])
 
             G = np.identity(num_rows)
-            G[col, col] = c
-            G[row, row] = c
+            G[[col, row], [col, row]] = c
             G[row, col] = s
             G[col, row] = -s
 
