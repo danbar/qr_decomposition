@@ -5,6 +5,32 @@ from math import hypot
 import numpy as np
 
 
+def gram_schmidt_process(A):
+    """Perform QR decomposition of matrix A using Gram-Schmidt process."""
+    (num_rows, num_cols) = np.shape(A)
+
+    # Initialize empty orthogonal matrix Q.
+    Q = np.empty([num_rows, num_rows])
+    cnt = 0
+
+    # Compute orthogonal matrix Q.
+    for a in A.T:
+        u = np.copy(a)
+        for i in range(0, cnt):
+            proj = np.dot(np.dot(Q[:, i].T, a), Q[:, i])
+            u -= proj
+
+        e = u / np.linalg.norm(u)
+        Q[:, cnt] = e
+
+        cnt += 1  # Increase columns counter.
+
+    # Compute upper triangular matrix R.
+    R = np.dot(Q.T, A)
+
+    return (Q, R)
+
+
 def givens_rotation(A):
     """Perform QR decomposition of matrix A using Givens rotation."""
     (num_rows, num_cols) = np.shape(A)

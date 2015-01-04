@@ -4,6 +4,7 @@ qr_decomposition
 qr_decomposition is a Python package for computing the QR decomposition.
 
 Therefore, the following algorithms are implemented:
+* Gram-Schmidt process
 * Givens rotation
 
 Dependencies

@@ -1,4 +1,5 @@
 """Example for the usage of the qr_composition package."""
+
 import numpy as np
 
 from qr_decomposition import qr_decomposition
@@ -18,5 +19,5 @@ print(A)
 # Print orthogonal matrix Q
 print(Q)
 
-# upper triangular matrix R
+# Print upper triangular matrix R
 print(R)
