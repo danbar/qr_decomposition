@@ -1,6 +1,6 @@
 """Module for Givens rotation."""
 
-from math import hypot
+from math import copysign, hypot
 
 import numpy as np
 
@@ -31,13 +31,40 @@ def gram_schmidt_process(A):
     return (Q, R)
 
 
+def householder_reflection(A):
+    """Perform QR decomposition of matrix A using Householder reflection."""
+    (num_rows, num_cols) = np.shape(A)
+
+    # Initialize orthogonal matrix Q and upper triangular matrix R.
+    Q = np.identity(num_rows)
+    R = np.copy(A)
+
+    # Iterative over column sub-vector and
+    # compute Householder matrix to zero-out lower triangular matrix entries.
+    for cnt in range(num_rows - 1):
+        x = R[cnt:, cnt]
+
+        e = np.zeros_like(x)
+        e[0] = copysign(np.linalg.norm(x), -A[cnt, cnt])
+        u = x + e
+        v = u / np.linalg.norm(u)
+
+        Q_cnt = np.identity(num_rows)
+        Q_cnt[cnt:, cnt:] -= 2.0 * np.outer(v, v)
+
+        R = np.dot(Q_cnt, R)
+        Q = np.dot(Q, Q_cnt.T)
+
+    return (Q, R)
+
+
 def givens_rotation(A):
     """Perform QR decomposition of matrix A using Givens rotation."""
     (num_rows, num_cols) = np.shape(A)
 
     # Initialize orthogonal matrix Q and upper triangular matrix R.
     Q = np.identity(num_rows)
-    R = A
+    R = np.copy(A)
 
     # Iterate over lower triangular matrix.
     (rows, cols) = np.tril_indices(num_rows, -1, num_cols)
