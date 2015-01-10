@@ -1,9 +1,8 @@
 qr_decomposition
 ================
 
-qr_decomposition is a Python package for computing the QR decomposition.
-
-Therefore, the following algorithms are implemented:
+qr_decomposition is a Python 3 package for computing the QR decomposition of a given matrix.
+Therefore, the package implements the following algorithms:
 * Gram-Schmidt process
 * Householder reflection
 * Givens rotation
@@ -11,7 +10,6 @@ Therefore, the following algorithms are implemented:
 Dependencies
 ------------
 
-* Python 3.4 or later
 * NumPy 1.9 or later
 
 Example
